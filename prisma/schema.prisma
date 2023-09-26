@@ -1,0 +1,67 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model admins {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  pass      String
+  createdAt DateTime @default(now())
+}
+
+model FullTimeJobs {
+  id           Int      @id @default(autoincrement())
+  title        String?
+  desc         String?
+  address      String?
+  city         String?
+  zipcode      String?
+  shift        String?
+  salary       Float?
+  is_published Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}
+
+model parttimejobs {
+  id           Int      @id @default(autoincrement())
+  title        String?
+  desc         String?
+  address      String?
+  city         String?
+  zipcode      String?
+  shift        String?
+  salary       Float?
+  pay_per_hour Float?
+  from_time    String?
+  end_time     String?
+  from_day     String?
+  end_day      String?
+  is_published Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}
+
+model acommodations {
+  id                          Int       @id @default(autoincrement())
+  title                       String?
+  desc                        String?
+  address                     String?
+  city                        String?
+  zipcode                     String?
+  n_bedrooms                  Int?
+  is_private_washroom         Boolean?
+  gender_pref                 String?
+  room_type                   String?
+  accom_type                  String?
+  main_floor_rent             Float?
+  basement_floor_rent         Float?
+  first_month_last_month_rent Boolean?
+  util_extra                  Boolean?
+  move_in_date                DateTime?
+  is_published                Boolean   @default(false)
+  createdAt                   DateTime  @default(now())
+}
